@@ -1,7 +1,7 @@
 import { registerWallet } from './register.js';
-import { GhostWallet } from './wallet.js';
-import type { Ghost } from './window.js';
+import { SpiralSafeWallet } from './wallet.js';
+import type { SpiralSafe } from './window.js';
 
-export function initialize(ghost: Ghost): void {
-    registerWallet(new GhostWallet(ghost));
+export function initialize(spiralSafe: SpiralSafe): void {
+    registerWallet(new SpiralSafeWallet(spiralSafe));
 }
