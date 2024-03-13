@@ -9,16 +9,16 @@ import type {
 } from '@wallet-standard/base';
 
 export function registerWallet(wallet: Wallet): void {
+    console.log("callback")
     const callback: WindowRegisterWalletEventCallback = ({ register }) => register(wallet);
     try {
+        console.log("register");
         (window as WalletEventsWindow).dispatchEvent(new RegisterWalletEvent(callback));
     } catch (error) {
         console.error('wallet-standard:register-wallet event could not be dispatched\n', error);
     }
     try {
-        (window as WalletEventsWindow).addEventListener('wallet-standard:app-ready', ({ detail: api }) =>
-            callback(api)
-        );
+        (window as WalletEventsWindow).addEventListener('wallet-standard:app-ready', ({ detail: api }) => { console.log("testy", api); callback(api); });
     } catch (error) {
         console.error('wallet-standard:app-ready event listener could not be added\n', error);
     }
